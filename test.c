@@ -28,7 +28,7 @@ bool test(void)
 			return *(int *)_x % 2 == 0;
 		}));
 		it = map(it, MAPPER({
-			int	*n = malloc(sizeof(int));
+			int *n = malloc(sizeof(int));
 			*n = *(int *)_x * 2;
 			return n;
 		}), free);
@@ -37,7 +37,7 @@ bool test(void)
 		}));
 		it = map(it, MAPPER({
 			int *sum = reduce(range(0, *(int *)_x), REDUCER({
-				int	*n = malloc(sizeof(int));
+				int *n = malloc(sizeof(int));
 				*n = *(int *)_s + *(int *)_e;
 				return n;
 			}), calloc(1, sizeof(int)), free);

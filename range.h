@@ -6,7 +6,7 @@
 typedef struct s_range_iter {
 	t_base_iter base;
 	int end;
-	int	i;
+	int i;
 } t_range_iter;
 
 t_base_iter *range(int start, int end);
