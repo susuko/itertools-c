@@ -52,10 +52,10 @@ t_iter *list_to_iter(t_list *list)
 t_list *iter_to_list(t_iter *iter)
 {
 	t_list head = { .next = NULL };
-	t_list *collected = &head;
+	t_list *tail = &head;
 	t_elem elem;
 	while ((elem = get_next_elem(iter)).iter_stat == ITER_OK) {
-		collected = add_list(collected, new_list(elem));
+		tail = add_list(tail, new_list(elem));
 	}
 	del_iter(iter);
 	return head.next;
