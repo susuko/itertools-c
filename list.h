@@ -6,7 +6,6 @@
 typedef struct s_list {
 	void *data;
 	struct s_list *next;
-	t_del_elem del_elem;
 } t_list;
 
 typedef struct s_list_iter {

@@ -58,6 +58,7 @@ bool test(void)
 
 	for (t_list *l = list, *next; l; l = next) {
 		next = l->next;
+		free(l->data);
 		free(l);
 	}
 
