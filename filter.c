@@ -2,7 +2,7 @@
 #include "filter.h"
 #include "iter.h"
 
-static t_elem get_next_elem_for_filter(t_base_iter *iter)
+static t_elem get_next_elem_for_filter(t_iter *iter)
 {
 	t_filter_iter *filter_iter = (t_filter_iter *)iter;
 	t_elem elem;
@@ -14,13 +14,13 @@ static t_elem get_next_elem_for_filter(t_base_iter *iter)
 	return elem;
 }
 
-static void del_iter_for_filter(t_base_iter *iter)
+static void del_iter_for_filter(t_iter *iter)
 {
 	del_iter(((t_filter_iter *)iter)->src_iter);
 	free(iter);
 }
 
-t_base_iter *filter(t_base_iter *iter, t_pred pred)
+t_iter *filter(t_iter *iter, t_pred pred)
 {
 	t_filter_iter *filter_iter = malloc(sizeof(t_filter_iter));
 	filter_iter->base.get_next_elem = get_next_elem_for_filter;
@@ -28,5 +28,5 @@ t_base_iter *filter(t_base_iter *iter, t_pred pred)
 	filter_iter->base.del_elem = iter->del_elem;
 	filter_iter->src_iter = iter;
 	filter_iter->pred = pred;
-	return (t_base_iter *)filter_iter;
+	return (t_iter *)filter_iter;
 }

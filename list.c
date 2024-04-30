@@ -2,7 +2,7 @@
 #include "list.h"
 #include "iter.h"
 
-static t_elem get_next_elem_for_list(t_base_iter *iter)
+static t_elem get_next_elem_for_list(t_iter *iter)
 {
 	t_list_iter *list_iter = (t_list_iter *)iter;
 	if (list_iter->list) {
@@ -20,7 +20,7 @@ static t_elem get_next_elem_for_list(t_base_iter *iter)
 	}
 }
 
-static void del_iter_for_list(t_base_iter *iter)
+static void del_iter_for_list(t_iter *iter)
 {
 	free(iter);
 }
@@ -39,17 +39,17 @@ static t_list *add_list(t_list *a, t_list *b)
 	return b;
 }
 
-t_base_iter *list_to_iter(t_list *list)
+t_iter *list_to_iter(t_list *list)
 {
 	t_list_iter *list_iter = malloc(sizeof(t_list_iter));
 	list_iter->base.get_next_elem = get_next_elem_for_list;
 	list_iter->base.del_iter = del_iter_for_list;
 	list_iter->base.del_elem = NULL;
 	list_iter->list = list;
-	return (t_base_iter *)list_iter;
+	return (t_iter *)list_iter;
 }
 
-t_list *iter_to_list(t_base_iter *iter)
+t_list *iter_to_list(t_iter *iter)
 {
 	t_list head = { .next = NULL };
 	t_list *collected = &head;

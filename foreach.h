@@ -5,6 +5,6 @@
 
 typedef void (*t_action)(void *data);
 
-void foreach(t_base_iter *iter, t_action action);
+void foreach(t_iter *iter, t_action action);
 
 #endif

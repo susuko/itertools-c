@@ -9,11 +9,11 @@ typedef struct s_list {
 } t_list;
 
 typedef struct s_list_iter {
-	t_base_iter base;
+	t_iter base;
 	t_list *list;
 } t_list_iter;
 
-t_base_iter *list_to_iter(t_list *list);
-t_list *iter_to_list(t_base_iter *iter);
+t_iter *list_to_iter(t_list *list);
+t_list *iter_to_list(t_iter *iter);
 
 #endif

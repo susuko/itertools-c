@@ -2,7 +2,7 @@
 #include "map.h"
 #include "iter.h"
 
-static t_elem get_next_elem_for_map(t_base_iter *iter)
+static t_elem get_next_elem_for_map(t_iter *iter)
 {
 	t_map_iter *map_iter = (t_map_iter *)iter;
 	t_elem elem = get_next_elem(map_iter->src_iter);
@@ -17,13 +17,13 @@ static t_elem get_next_elem_for_map(t_base_iter *iter)
 	return elem;
 }
 
-static void del_iter_for_map(t_base_iter *iter)
+static void del_iter_for_map(t_iter *iter)
 {
 	del_iter(((t_map_iter *)iter)->src_iter);
 	free(iter);
 }
 
-t_base_iter *map(t_base_iter *iter, t_mapper mapper, t_del_elem del_elem)
+t_iter *map(t_iter *iter, t_mapper mapper, t_del_elem del_elem)
 {
 	t_map_iter *map_iter = malloc(sizeof(t_map_iter));
 	map_iter->base.get_next_elem = get_next_elem_for_map;
@@ -31,5 +31,5 @@ t_base_iter *map(t_base_iter *iter, t_mapper mapper, t_del_elem del_elem)
 	map_iter->base.del_elem = del_elem;
 	map_iter->src_iter = iter;
 	map_iter->mapper = mapper;
-	return (t_base_iter *)map_iter;
+	return (t_iter *)map_iter;
 }

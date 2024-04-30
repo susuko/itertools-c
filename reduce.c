@@ -2,7 +2,7 @@
 #include "reduce.h"
 #include "iter.h"
 
-void *reduce(t_base_iter *iter, t_reducer reducer, void *init, t_del_sum del_sum)
+void *reduce(t_iter *iter, t_reducer reducer, void *init, t_del_sum del_sum)
 {
 	void *sum = init;
 	t_elem elem;

@@ -3,7 +3,7 @@
 #include "range.h"
 #include "iter.h"
 
-static t_elem get_next_elem_for_range(t_base_iter *iter)
+static t_elem get_next_elem_for_range(t_iter *iter)
 {
 	t_range_iter *range_iter = (t_range_iter *)iter;
 	if (range_iter->i < range_iter->end) {
@@ -21,12 +21,12 @@ static t_elem get_next_elem_for_range(t_base_iter *iter)
 	}
 }
 
-static void del_iter_for_range(t_base_iter *iter)
+static void del_iter_for_range(t_iter *iter)
 {
 	free(iter);
 }
 
-t_base_iter *range(int start, int end)
+t_iter *range(int start, int end)
 {
 	t_range_iter *range_iter = malloc(sizeof(t_range_iter));
 	range_iter->base.get_next_elem = get_next_elem_for_range;
@@ -34,5 +34,5 @@ t_base_iter *range(int start, int end)
 	range_iter->base.del_elem = free;
 	range_iter->end = end;
 	range_iter->i = start;
-	return (t_base_iter *)range_iter;
+	return (t_iter *)range_iter;
 }

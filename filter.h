@@ -7,11 +7,11 @@
 typedef bool (*t_pred)(void *data);
 
 typedef struct s_filter_iter {
-	t_base_iter base;
-	t_base_iter *src_iter;
+	t_iter base;
+	t_iter *src_iter;
 	t_pred pred;
 } t_filter_iter;
 
-t_base_iter *filter(t_base_iter *iter, t_pred pred);
+t_iter *filter(t_iter *iter, t_pred pred);
 
 #endif

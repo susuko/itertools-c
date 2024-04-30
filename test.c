@@ -23,7 +23,7 @@ bool test(void)
 	int expect_size = sizeof(expect) / sizeof(expect[0]);
 
 	t_list *list = iter_to_list(({
-		t_base_iter *it = range(0, 100);
+		t_iter *it = range(0, 100);
 		it = filter(it, PRED({
 			return *(int *)_x % 2 == 0;
 		}));
