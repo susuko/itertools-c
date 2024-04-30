@@ -1,9 +1,9 @@
 #include "iter.h"
 
-void del_elem(t_elem elem)
+void del_elem(t_base_iter *iter, t_elem elem)
 {
-	if (elem.del_elem)
-		elem.del_elem(elem.data);
+	if (iter->del_elem)
+		iter->del_elem(elem.data);
 }
 
 void del_iter(t_base_iter *iter)

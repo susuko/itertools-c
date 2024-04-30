@@ -10,8 +10,7 @@ static t_elem get_next_elem_for_list(t_base_iter *iter)
 		list_iter->list = list_iter->list->next;
 		return (t_elem) {
 			.data = data,
-			.iter_stat = ITER_OK,
-			.del_elem = NULL
+			.iter_stat = ITER_OK
 		};
 	}
 	else {
@@ -45,6 +44,7 @@ t_base_iter *list_to_iter(t_list *list)
 	t_list_iter *list_iter = malloc(sizeof(t_list_iter));
 	list_iter->base.get_next_elem = get_next_elem_for_list;
 	list_iter->base.del_iter = del_iter_for_list;
+	list_iter->base.del_elem = NULL;
 	list_iter->list = list;
 	return (t_base_iter *)list_iter;
 }

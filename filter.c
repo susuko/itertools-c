@@ -9,7 +9,7 @@ static t_elem get_next_elem_for_filter(t_base_iter *iter)
 	while ((elem = get_next_elem(filter_iter->src_iter)).iter_stat == ITER_OK) {
 		if (filter_iter->pred(elem.data))
 			break;
-		del_elem(elem);
+		del_elem(filter_iter->src_iter, elem);
 	}
 	return elem;
 }
@@ -25,6 +25,7 @@ t_base_iter *filter(t_base_iter *iter, t_pred pred)
 	t_filter_iter *filter_iter = malloc(sizeof(t_filter_iter));
 	filter_iter->base.get_next_elem = get_next_elem_for_filter;
 	filter_iter->base.del_iter = del_iter_for_filter;
+	filter_iter->base.del_elem = iter->del_elem;
 	filter_iter->src_iter = iter;
 	filter_iter->pred = pred;
 	return (t_base_iter *)filter_iter;

@@ -11,8 +11,7 @@ static t_elem get_next_elem_for_range(t_base_iter *iter)
 		*data = range_iter->i++;
 		return (t_elem) {
 			.data = data,
-			.iter_stat = ITER_OK,
-			.del_elem = free
+			.iter_stat = ITER_OK
 		};
 	}
 	else {
@@ -32,6 +31,7 @@ t_base_iter *range(int start, int end)
 	t_range_iter *range_iter = malloc(sizeof(t_range_iter));
 	range_iter->base.get_next_elem = get_next_elem_for_range;
 	range_iter->base.del_iter = del_iter_for_range;
+	range_iter->base.del_elem = free;
 	range_iter->end = end;
 	range_iter->i = start;
 	return (t_base_iter *)range_iter;
