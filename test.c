@@ -56,8 +56,10 @@ bool test(void)
 	if (i != expect_size)
 		result = false;
 
-	for (t_list *l = list; l; l = l->next)
+	for (t_list *l = list, *next; l; l = next) {
+		next = l->next;
 		free(l);
+	}
 
 	return result;
 }
