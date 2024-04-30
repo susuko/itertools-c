@@ -36,12 +36,11 @@ bool test(void)
 			return *(int *)_x < 50;
 		}));
 		it = map(it, MAPPER({
-			int *sum = reduce(range(0, *(int *)_x), REDUCER({
+			return reduce(range(0, *(int *)_x), REDUCER({
 				int *n = malloc(sizeof(int));
 				*n = *(int *)_s + *(int *)_e;
 				return n;
 			}), calloc(1, sizeof(int)), free);
-			return sum;
 		}), free);
 	}));
 
