@@ -1,5 +1,5 @@
-NAME = test.out
-SRCS = test.c filter.c foreach.c iter.c map.c range.c reduce.c list.c
+NAME = libiter.a
+SRCS = filter.c foreach.c iter.c map.c range.c reduce.c list.c
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
@@ -10,7 +10,7 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@
+	ar -rcs $(NAME) $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
